@@ -1,0 +1,11 @@
+module Choice;
+
+local protocol Choice at W[0..N](role W[0..N]) {
+  choice at W[0] {
+    if W[1] T() from W[0];
+    if W[0] T() to W[1];
+  } or {
+    if W[1] T2() from W[0];
+    if W[0] T2() to W[1];
+  }
+}

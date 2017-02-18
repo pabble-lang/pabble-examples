@@ -1,0 +1,11 @@
+module SparseMatrix;
+
+global protocol SparseMatrix(role W[0..N]) {
+  row(int) from W[0] to W[1..N];
+  col(int) from W[0] to W[1..N];
+  values(double) from W[0] to W[1..N];
+  vector(double) from W[0] to W[1..N];
+
+  // Results
+  output(double) from W[1..N] to W[0];
+}

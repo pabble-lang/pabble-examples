@@ -1,0 +1,19 @@
+module LoadBal;
+
+global protocol LoadBal(role W[0..N]) {
+  rec LISTEN {
+    oneof (W[i in 1..N]) {
+      Req() from W[i] to W[0];
+      choice at W[0] {
+        Rep() from W[0] to W[i];
+        continue LISTEN;
+      } or {
+        End() from W[0] to W[i];
+        foreach (x:1..N except i) {
+          Req() from W[i] to W[0];
+          End() from W[0] to W[i];
+        }
+      }
+    }
+  }
+}

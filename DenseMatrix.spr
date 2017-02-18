@@ -1,0 +1,18 @@
+module DenseMatrix;
+
+global protocol DenseMatrix(role W[0..N]) {
+  // Scatter Matrix A
+  foreach (i:1..N) {
+    LowBound(int) from W[0] to W[i];
+    UpBound(int) from W[0] to W[i];
+    Data(double) from W[0] to W[i];
+  }
+  // Scatter Vector B
+  Vector(double) from W[0] to W[1..N];
+  // Gather data
+  foreach (i:1..N) {
+    LowBound(int) from W[i] to W[0];
+    UpBound(int) from W[i] to W[0];
+    Data(double) from W[i] to W[0];
+  }
+}

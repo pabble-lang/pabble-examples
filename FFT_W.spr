@@ -1,0 +1,11 @@
+module FFT;
+
+const N = 3;
+local protocol FFT at W[0..7](role W[0..7]) {
+  foreach (r:0..(N-1)) { 
+    foreach (i:0..((2<<N)-1)) { 
+      if W[((i-(((((i/1)<<r)%2)*1)<<(r+1)))+(1<<r))] Label(int) from W[i];
+      if W[i] Label(int) to W[((i-(((((i/1)<<r)%2)*1)<<(r+1)))+(1<<r))];
+    }
+  }
+}

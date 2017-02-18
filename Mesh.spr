@@ -1,0 +1,13 @@
+module Mesh;
+
+const N = 0 .. inf;
+
+global protocol Mesh(role W[0..N][0..N]) {
+  rec LOOP {
+    Ring(double) from W[i:0..N][j:0..N-1] to W[i][j+1];
+    Ring(double) from W[i:1..N][N] to W[i][1];
+
+    //(double) from Col to Col;
+    continue LOOP;
+  }
+}

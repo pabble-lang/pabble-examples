@@ -1,0 +1,9 @@
+module Choice;
+
+global protocol Choice(role W[0..N]) {
+  choice at W[0] {
+    T() from W[0] to W[1];
+  } or {
+    T2() from W[0] to W[1];
+  }
+}

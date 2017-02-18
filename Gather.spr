@@ -1,0 +1,7 @@
+module Gather;
+
+global protocol Gather(role W[0..N]) {
+  repeat oneof (W[i in 1..N]) {
+    T(int) from W[i] to W[0];
+  }
+}

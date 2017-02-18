@@ -1,0 +1,12 @@
+module Mesh;
+
+const N = 0..inf;
+local protocol Mesh at W[0..N][0..N](role W[0..N][0..N]) {
+  rec LOOP {
+    if W[i:0..N][j:1..N] Ring(double) from W[i][(j-1)];
+    if W[i:0..N][j:0..(N-1)] Ring(double) to W[i][(j+1)];
+    if W[i:1..N][1] Ring(double) from W[i][N];
+    if W[i:1..N][N] Ring(double) to W[i][1];
+    continue LOOP;
+  }
+}

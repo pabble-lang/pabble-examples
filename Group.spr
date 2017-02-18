@@ -1,0 +1,6 @@
+module Group;
+
+global protocol Group(role W[0..N], role Q, group Ws={ W[0..N] }, group Ws2 = { W[1..N] }) {
+  (int) from W[0] to Ws;
+  (int) from Ws2 to Ws;
+}

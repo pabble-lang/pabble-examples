@@ -1,0 +1,14 @@
+module SparseMatrix;
+
+local protocol SparseMatrix at W[0..N](role W[0..N]) {
+  if W[0] row(int) to W[1..N];
+  if W[1..N] row(int) from W[0];
+  if W[0] col(int) to W[1..N];
+  if W[1..N] col(int) from W[0];
+  if W[0] values(double) to W[1..N];
+  if W[1..N] values(double) from W[0];
+  if W[0] vector(double) to W[1..N];
+  if W[1..N] vector(double) from W[0];
+  if W[0] output(double) from W[1..N];
+  if W[1..N] output(double) to W[0];
+}

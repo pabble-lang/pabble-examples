@@ -1,0 +1,14 @@
+module Ring;
+
+local protocol Ring at W[0..N](role W[0..N]) {
+  rec ITER {
+    rec RING {
+      if W[i:1..N] Ring() from W[(i-1)];
+      if W[i:0..(N-1)] Ring() to W[(i+1)];
+      if W[0] Ring() from W[N];
+      if W[N] Ring() to W[0];
+      continue RING;
+    }
+    continue ITER;
+  }
+}

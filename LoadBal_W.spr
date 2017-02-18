@@ -1,0 +1,30 @@
+module LoadBal;
+
+local protocol LoadBal at W[0..N](role W[0..N]) {
+  rec LISTEN {
+    if W[0] {
+        oneof (W[i in 1..N]) {
+            Req() from W[i];
+            choice at W[0] {
+              Rep() to W[i];
+              continue LISTEN;
+            } or {
+              End() to W[i];
+              foreach (x:1..N except i) { 
+                Req() from W[i];
+                End() to W[i];
+              }
+            }
+          }
+      }
+    if W[i:1..N] {
+        Req() to W[0];
+        choice at W[0] {
+          Rep() from W[0];
+          continue LISTEN;
+        } or {
+        End() from W[0];
+     }
+      }
+  }
+}
